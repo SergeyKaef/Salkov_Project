@@ -5,7 +5,6 @@ using System.Data;
 using System.Drawing;
 using System.IO;
 using System.Linq;
-using System.Reflection.Emit;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -42,8 +41,8 @@ namespace Tetris
             MapController.linesRemoved = 0;
             MapController.currentShape = new Shape(3, 0);
             MapController.Interval = 300;
-            label1.Text = "Очки: " + MapController.score;
-            label2.Text = "Линии: " + MapController.linesRemoved;
+            label1.Text = "Score: " + MapController.score;
+            label2.Text = "Lines: " + MapController.linesRemoved;
 
 
 
@@ -107,6 +106,15 @@ namespace Tetris
                 MapController.SliceMap(label1, label2);
                 timer1.Interval = MapController.Interval;
                 MapController.currentShape.ResetShape(3, 0);
+                if (MapController.Collide())
+                {
+                    //RecordsController.SaveRecords(playerName);
+                    MapController.ClearMap();
+                    timer1.Tick -= new EventHandler(update);
+                    timer1.Stop();
+                    MessageBox.Show("Ваш результат: " + MapController.score);
+                    Init();
+                }
             }
             MapController.Merge();
             Invalidate();
@@ -118,5 +126,40 @@ namespace Tetris
             MapController.DrawMap(e.Graphics);
             MapController.ShowNextShape(e.Graphics);
         }
+
+        private void OnPauseButtonClick(object sender, EventArgs e)
+        {
+            var pressedButton = sender as ToolStripMenuItem;
+            if (timer1.Enabled)
+            {
+                pressedButton.Text = "Продолжить";
+                timer1.Stop();
+            }
+            else
+            {
+                pressedButton.Text = "Пауза";
+                timer1.Start();
+            }
+        }
+
+        private void OnAgainButtonClick(object sender, EventArgs e)
+        {
+            timer1.Tick -= new EventHandler(update);
+            timer1.Stop();
+            MapController.ClearMap();
+            Init();
+        }
+
+
+        private void OnInfoPressed(object sender, EventArgs e)
+        {
+            string infoString = "";
+            infoString = "Для управление фигурами используйте стрелочку влево/вправо.\n";
+            infoString += "Чтобы ускорить падение фигуры - нажмите 'Пробел'.\n";
+            infoString += "Для поворота фигуры используйте 'A'.\n";
+            MessageBox.Show(infoString, "Справка");
+        }
+
+
     }
 }

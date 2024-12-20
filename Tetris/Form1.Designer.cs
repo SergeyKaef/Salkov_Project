@@ -64,20 +64,23 @@
             // паузаToolStripMenuItem
             // 
             this.паузаToolStripMenuItem.Name = "паузаToolStripMenuItem";
-            this.паузаToolStripMenuItem.Size = new System.Drawing.Size(195, 26);
+            this.паузаToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
             this.паузаToolStripMenuItem.Text = "Пауза";
+            this.паузаToolStripMenuItem.Click += new System.EventHandler(this.OnPauseButtonClick);
             // 
             // начатьЗановоToolStripMenuItem
             // 
             this.начатьЗановоToolStripMenuItem.Name = "начатьЗановоToolStripMenuItem";
-            this.начатьЗановоToolStripMenuItem.Size = new System.Drawing.Size(195, 26);
+            this.начатьЗановоToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
             this.начатьЗановоToolStripMenuItem.Text = "Начать заново";
+            this.начатьЗановоToolStripMenuItem.Click += new System.EventHandler(this.OnAgainButtonClick);
             // 
             // справкаToolStripMenuItem
             // 
             this.справкаToolStripMenuItem.Name = "справкаToolStripMenuItem";
-            this.справкаToolStripMenuItem.Size = new System.Drawing.Size(195, 26);
+            this.справкаToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
             this.справкаToolStripMenuItem.Text = "Справка";
+            this.справкаToolStripMenuItem.Click += new System.EventHandler(this.OnInfoPressed);
             // 
             // label1
             // 
@@ -85,7 +88,7 @@
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 19.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label1.Location = new System.Drawing.Point(392, 192);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(115, 39);
+            this.label1.Size = new System.Drawing.Size(109, 38);
             this.label1.TabIndex = 3;
             this.label1.Text = "label1";
             // 
@@ -95,7 +98,7 @@
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 19.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label2.Location = new System.Drawing.Point(392, 255);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(115, 39);
+            this.label2.Size = new System.Drawing.Size(109, 38);
             this.label2.TabIndex = 4;
             this.label2.Text = "label2";
             // 
@@ -109,7 +112,7 @@
             this.Controls.Add(this.menuStrip1);
             this.DoubleBuffered = true;
             this.MainMenuStrip = this.menuStrip1;
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "Form1";
             this.Text = "Tetris";
             this.Paint += new System.Windows.Forms.PaintEventHandler(this.OnPaint);

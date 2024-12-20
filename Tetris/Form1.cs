@@ -1,12 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using Tetris.Controllers;
 
@@ -14,15 +7,11 @@ namespace Tetris
 {
     public partial class Form1 : Form
     {
-
-
         string playerName;
 
         public Form1()
         {
             InitializeComponent();
-            //if (!File.Exists(RecordsController.recordPath))
-            //File.Create(RecordsController.recordPath);
             playerName = Microsoft.VisualBasic.Interaction.InputBox("Введите имя игрока", "Настройка игрока", "Новый игрок");
             if (playerName == "")
             {
@@ -44,12 +33,9 @@ namespace Tetris
             label1.Text = "Очки: " + MapController.score;
             label2.Text = "Линии: " + MapController.linesRemoved;
 
-
-
             timer1.Interval = MapController.Interval;
             timer1.Tick += new EventHandler(update);
             timer1.Start();
-
 
             Invalidate();
         }
@@ -59,7 +45,6 @@ namespace Tetris
             switch (e.KeyCode)
             {
                 case Keys.A:
-
                     if (!MapController.IsIntersects())
                     {
                         MapController.ResetArea();
@@ -92,7 +77,6 @@ namespace Tetris
             }
         }
 
-
         private void update(object sender, EventArgs e)
         {
             MapController.ResetArea();
@@ -112,7 +96,11 @@ namespace Tetris
                     MapController.ClearMap();
                     timer1.Tick -= new EventHandler(update);
                     timer1.Stop();
-                    MessageBox.Show("Ваш результат: " + MapController.score);
+
+                    // Вызов пользовательского MessageBox
+                    CustomMessageBox messageBox = new CustomMessageBox(MapController.score.ToString());
+                    messageBox.ShowDialog();
+
                     Init();
                 }
             }
@@ -150,7 +138,6 @@ namespace Tetris
             Init();
         }
 
-
         private void OnInfoPressed(object sender, EventArgs e)
         {
             string infoString = "";
@@ -164,6 +151,46 @@ namespace Tetris
         {
             Random rand = new Random();
             this.BackColor = Color.FromArgb(rand.Next(256), rand.Next(256), rand.Next(256));
+        }
+    }
+
+    public partial class CustomMessageBox : Form
+    {
+        public CustomMessageBox(string score)
+        {
+            
+
+            // Настройка формы
+            this.BackColor = Color.Green;
+            this.Size = new Size(400, 200);
+            this.FormBorderStyle = FormBorderStyle.FixedDialog;
+            this.MaximizeBox = false;
+
+            // Заголовок
+            Label titleLabel = new Label();
+            titleLabel.Text = "КОНЕЦ ИГРЫ";
+            titleLabel.ForeColor = Color.Red;
+            titleLabel.Font = new Font("Arial", 15, FontStyle.Bold);
+            titleLabel.Dock = DockStyle.Top;
+            titleLabel.TextAlign = ContentAlignment.MiddleCenter;
+
+            // Результат
+            Label resultLabel = new Label();
+            resultLabel.Text = "Ваш результат: " + score;
+            resultLabel.Font = new Font("Arial", 14);
+            resultLabel.Dock = DockStyle.Fill;
+            resultLabel.TextAlign = ContentAlignment.MiddleCenter;
+
+            // Кнопка OK
+            Button okButton = new Button();
+            okButton.Text = "OK";
+            okButton.Dock = DockStyle.Bottom;
+            okButton.Click += (sender, e) => this.Close();
+
+            // Добавление элементов на форму
+            this.Controls.Add(resultLabel);
+            this.Controls.Add(titleLabel);
+            this.Controls.Add(okButton);
         }
     }
 }

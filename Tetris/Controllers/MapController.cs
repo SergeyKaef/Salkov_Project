@@ -99,7 +99,7 @@ namespace Tetris.Controllers
             }
         }
 
-        public static void SliceMap(Label label1,Label label2)
+        public static void SliceMap(Label label1, Label label2)
         {
             int count = 0;
             int curRemovedLines = 0;

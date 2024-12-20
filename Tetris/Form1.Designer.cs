@@ -37,6 +37,7 @@
             this.справкаToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
+            this.сменитьТемуToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -56,7 +57,8 @@
             this.менюToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.паузаToolStripMenuItem,
             this.начатьЗановоToolStripMenuItem,
-            this.справкаToolStripMenuItem});
+            this.справкаToolStripMenuItem,
+            this.сменитьТемуToolStripMenuItem});
             this.менюToolStripMenuItem.Name = "менюToolStripMenuItem";
             this.менюToolStripMenuItem.Size = new System.Drawing.Size(65, 24);
             this.менюToolStripMenuItem.Text = "Меню";
@@ -102,6 +104,13 @@
             this.label2.TabIndex = 4;
             this.label2.Text = "label2";
             // 
+            // сменитьТемуToolStripMenuItem
+            // 
+            this.сменитьТемуToolStripMenuItem.Name = "сменитьТемуToolStripMenuItem";
+            this.сменитьТемуToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.сменитьТемуToolStripMenuItem.Text = "Сменить тему";
+            this.сменитьТемуToolStripMenuItem.Click += new System.EventHandler(this.сменитьТемуToolStripMenuItem_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -133,6 +142,7 @@
         private System.Windows.Forms.ToolStripMenuItem справкаToolStripMenuItem;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.ToolStripMenuItem сменитьТемуToolStripMenuItem;
     }
 }
 

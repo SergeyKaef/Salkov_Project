@@ -41,8 +41,8 @@ namespace Tetris
             MapController.linesRemoved = 0;
             MapController.currentShape = new Shape(3, 0);
             MapController.Interval = 300;
-            label1.Text = "Score: " + MapController.score;
-            label2.Text = "Lines: " + MapController.linesRemoved;
+            label1.Text = "Очки: " + MapController.score;
+            label2.Text = "Линии: " + MapController.linesRemoved;
 
 
 
@@ -160,6 +160,10 @@ namespace Tetris
             MessageBox.Show(infoString, "Справка");
         }
 
-
+        private void сменитьТемуToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Random rand = new Random();
+            this.BackColor = Color.FromArgb(rand.Next(256), rand.Next(256), rand.Next(256));
+        }
     }
 }
